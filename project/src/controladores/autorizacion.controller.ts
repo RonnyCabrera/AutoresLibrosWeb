@@ -8,13 +8,13 @@ export class AutorizacionController {
                   @Res () response,
                   @Req () request) {
 
-        let usuario = bodyParams.usuario;
+        let user = bodyParams.user;
         let password = bodyParams.password;
-        if(usuario && password){
-            if(usuario === 'adrianeguez' && password === '12345678910'){
+        if(user && password){
+            if(user === 'adrianeguez' && password === '12345678910'){
                 const paramCookie = {
                     nombreCookie: 'token',
-                    valorCookie: usuario.toString(),
+                    valorCookie: user.toString(),
                 };
 
                 return response
