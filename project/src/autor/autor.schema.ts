@@ -3,7 +3,7 @@ import * as Joi from 'joi';
 export const AUTOR_SCHEMA = Joi
     .object()
     .keys({
-        id: Joi
+        idAutor: Joi
             .number(),
         nombres: Joi
             .string()
@@ -22,4 +22,6 @@ export const AUTOR_SCHEMA = Joi
             .min(0),
         ecuatoriano:Joi
             .boolean(),
+        usuarioId: Joi
+            .number(),
     });

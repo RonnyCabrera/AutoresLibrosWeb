@@ -1,0 +1,18 @@
+import * as Joi from 'joi';
+
+export const USUARIO_SCHEMA = Joi
+    .object()
+    .key({
+        idUsuario: Joi
+            .number(),
+        user: Joi
+            .string()
+            .regex(/^[a-zA-Z]{3,30}$/)
+            .min(3)
+            .max(30),
+        password: Joi
+            .string()
+            .regex(/^[a-zA-Z0-9]{3,30}$/)
+            .min(8)
+            .max(10),
+    });

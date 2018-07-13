@@ -7,7 +7,7 @@ export class UsuarioEntity {
     idUsuario: number;
 
     @Column({ length: 500 })
-    nombre: string;
+    user: string;
 
     @Column({ length: 500 })
     password: string;

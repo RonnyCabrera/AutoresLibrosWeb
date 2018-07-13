@@ -3,7 +3,7 @@ import * as Joi from 'joi';
 export const LIBRO_SCHEMA = Joi
     .object()
     .keys({
-        id: Joi
+        idLibro: Joi
             .number(),
         ICBN: Joi
             .number(),
