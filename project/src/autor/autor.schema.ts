@@ -1,4 +1,5 @@
 import * as Joi from 'joi';
+
 export const AUTOR_SCHEMA = Joi
     .object()
     .keys({
