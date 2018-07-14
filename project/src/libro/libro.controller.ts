@@ -6,7 +6,7 @@ import {LIBRO_SCHEMA} from "./libro.schema";
 @Controller('Libro')
 export class LibroController {
 
-    constructor(private  _libroService: LibroService){
+    constructor(private _libroService: LibroService){
 
     }
 

@@ -10,6 +10,8 @@ import {TypeOrmModule} from "@nestjs/typeorm";
 import {UsuarioEntity} from "./usuario/usuario.entity";
 import {AutorEntity} from "./autor/autor.entity";
 import {LibroEntity} from "./libro/libro.entity";
+import {UsuarioController} from "./usuario/usuario.controller";
+import {UsuarioService} from "./usuario/usuario.service";
 
 @Module({
   imports: [
@@ -26,7 +28,7 @@ import {LibroEntity} from "./libro/libro.entity";
       }),
       TypeOrmModule.forFeature([UsuarioEntity, AutorEntity, LibroEntity])
   ],
-  controllers: [AppController, AutorController, LibroController, AutorizacionController],
-  providers: [AppService, AutorService, LibroService],
+  controllers: [AppController, AutorController, LibroController, AutorizacionController, UsuarioController],
+  providers: [AppService, AutorService, LibroService, UsuarioService],
 })
 export class AppModule {}

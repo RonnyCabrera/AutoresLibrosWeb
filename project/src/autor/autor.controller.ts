@@ -7,7 +7,7 @@ import {AUTOR_SCHEMA} from "./autor.schema";
 @Controller('Autor')
 export  class AutorController {
 
-    constructor(private  _autorService: AutorService){
+    constructor(private _autorService: AutorService){
 
     }
 
