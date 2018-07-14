@@ -1,4 +1,4 @@
-import {Controller, Post} from "@nestjs/common";
+import {Controller, Get, HttpStatus, Post, Req, Res} from "@nestjs/common";
 import {UsuarioService} from "./usuario.service";
 import {UsuarioEntity} from "./usuario.entity";
 
@@ -11,7 +11,20 @@ export class UsuarioController {
 
     @Post()
     crearUsuario() {
-        const usuario = new UsuarioEntity();
-        return this._usuarioService.crearUsuario(usuario);
+        return this._usuarioService.crearUsuario();
+    }
+
+    @Get()
+    async listarTodos(@Res () response,
+                @Req () request) {
+        const usuarios = await this._usuarioService.listarTodos();
+        if(Object.keys(usuarios).length === 0){
+            return response.send({
+                mensaje:'No existe ningun Usuario',
+                estado: HttpStatus.NOT_FOUND,
+            });
+        } else{
+            return response.status(202).send(usuarios);
+        }
     }
 }

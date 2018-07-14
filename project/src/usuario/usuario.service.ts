@@ -1,4 +1,4 @@
-import {Injectable} from "@nestjs/common";
+import {HttpStatus, Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
 import {UsuarioEntity} from "./usuario.entity";
 import {Repository} from "typeorm";
@@ -11,12 +11,18 @@ export class UsuarioService {
         private readonly _usuarioRepository: Repository<UsuarioEntity>,
     ) {}
 
-    crearUsuario(usuario: UsuarioEntity) {
-        for (var usuarios in UsuarioData) {
+    crearUsuario() {
+        for(var usuarios in UsuarioData) {
+            const usuario = new UsuarioEntity();
             usuario.user = UsuarioData[usuarios].user;
             usuario.password = UsuarioData[usuarios].password;
             this._usuarioRepository.save(usuario);
         }
+        return this._usuarioRepository.find();
+    }
+
+    async listarTodos(): Promise<UsuarioEntity[]> {
+        return await this._usuarioRepository.find();
     }
 
 }
