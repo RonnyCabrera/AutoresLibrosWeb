@@ -1,16 +1,28 @@
 <div class="row">
+
   <div class="col-sm-1">
 
   </div>
   <div class="col-sm-10">
     <h3>Usuarios</h3>
     <div class="row">
-      <div *ngFor="let usuario of usuarios" class="col-sm-4">
-        <div class="card" style="width: 18rem;">
+      <div *ngFor="let usuario of usuariosMostrar" class="col-sm-3">
+        <div class="card" style="width: 10rem;">
           <h5 class="card-title align-self-center">{{usuario.nombreUsuario}} {{usuario.apellidoUsuario}}</h5>
           <img class="card-img align-self-center" style="width: 100px" src="http://www.cavsi.com/preguntasrespuestas/images/que-es-usuario.jpg" alt="usuario">
           <a href="#" class="btn btn-primary align-self-center" style="width: 100px">Visitar</a>
         </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-2">
+        <button (click)="anterior()" [disabled]="paginaActual === 1">Anterior</button>
+      </div>
+      <div class="col-sm-6">
+      </div>
+      <div class="col-sm-2 ml-auto">
+        <button (click)="siguiente()" [disabled]="paginaActual === paginas">Siguiente</button>
       </div>
     </div>
   </div>
@@ -18,3 +30,4 @@
 
   </div>
 </div>
+

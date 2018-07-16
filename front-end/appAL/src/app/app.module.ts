@@ -8,9 +8,6 @@ import { HomeComponent } from './home/home.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { AutorComponent } from './autor/autor.component';
 import { LibroComponent } from './libro/libro.component';
-import { ModeloLibroComponent } from './modelo-libro/modelo-libro.component';
-import { ModeloAutorComponent } from './modelo-autor/modelo-autor.component';
-import { ModeloUsuarioComponent } from './modelo-usuario/modelo-usuario.component';
 import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
@@ -20,10 +17,7 @@ import {HttpClientModule} from "@angular/common/http";
     HomeComponent,
     UsuarioComponent,
     AutorComponent,
-    LibroComponent,
-    ModeloLibroComponent,
-    ModeloAutorComponent,
-    ModeloUsuarioComponent
+    LibroComponent
   ],
   imports: [
     BrowserModule,

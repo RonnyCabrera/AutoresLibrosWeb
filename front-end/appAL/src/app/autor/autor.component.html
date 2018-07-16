@@ -2,10 +2,10 @@
   <div class="col-sm-1">
 
   </div>
-  <div class="col-sm-10">
+  <div class="col-sm-10 center-block">
     <h3>Autores</h3>
     <div class="row">
-      <div *ngFor="let autor of autores" class="col-sm-4">
+      <div *ngFor="let autor of autoresMostrar" class="col-sm-5">
         <div class="card">
           <div class="row">
             <div class="col-sm-4">
@@ -21,6 +21,17 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-2">
+        <button (click)="anterior()" [disabled]="paginaActual === 1">Anterior</button>
+      </div>
+      <div class="col-sm-6">
+      </div>
+      <div class="col-sm-2 ml-auto">
+        <button (click)="siguiente()" [disabled]="paginaActual === paginas">Siguiente</button>
       </div>
     </div>
   </div>
