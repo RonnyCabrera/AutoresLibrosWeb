@@ -1,4 +1,4 @@
-import {Controller, Get, HttpStatus, Post, Req, Res} from "@nestjs/common";
+import {Controller, Get, HttpStatus, Param, Post, Req, Res} from "@nestjs/common";
 import {UsuarioService} from "./usuario.service";
 import {UsuarioEntity} from "./usuario.entity";
 
@@ -26,5 +26,14 @@ export class UsuarioController {
         } else{
             return response.status(202).send(usuarios);
         }
+    }
+
+    @Get('/:nombreBuscar')
+    async buscarUsuarios(
+        @Param() paramParams,
+        @Res() response
+    ) {
+        const usuarios = await this._usuarioService.buscarUsuarios(paramParams.nombreBuscar);
+        return response.status(202).send(usuarios);
     }
 }

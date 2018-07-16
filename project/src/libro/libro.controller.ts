@@ -1,4 +1,4 @@
-import {Controller, Get, HttpStatus, Post, Req, Res} from "@nestjs/common";
+import {Controller, Get, HttpStatus, Param, Post, Req, Res} from "@nestjs/common";
 import {LibroService} from "./libro.service";
 import {LibroEntity} from "./libro.entity";
 
@@ -26,6 +26,15 @@ export class LibroController {
         } else{
             return response.status(202).send(libros);
         }
+    }
+
+    @Get('/:nombreBuscar')
+    async buscarLibros(
+        @Param() paramParams,
+        @Res() response
+    ) {
+        const libros = await this._libroService.buscarLibros(paramParams.nombreBuscar);
+        return response.status(202).send(libros);
     }
 
     /*@Get('/:id')

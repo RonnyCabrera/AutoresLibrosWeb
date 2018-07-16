@@ -1,4 +1,4 @@
-import {Controller, Get, HttpStatus, Post, Req, Res} from "@nestjs/common";
+import {Controller, Get, HttpStatus, Param, Post, Req, Res} from "@nestjs/common";
 import {AutorService} from "./autor.service";
 import {AutorEntity} from "./autor.entity";
 
@@ -27,6 +27,15 @@ export  class AutorController {
         } else{
             return response.status(202).send(autores);
         }
+    }
+
+    @Get('/:nombresBuscar')
+    async buscarAutores(
+        @Param() paramParams,
+        @Res() response
+    ) {
+        const autores = await this._autorService.buscarAutores(paramParams.nombresBuscar);
+        return response.status(202).send(autores);
     }
 
     /*@Get('/:id')

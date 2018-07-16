@@ -1,7 +1,7 @@
 import {HttpStatus, Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
 import {UsuarioEntity} from "./usuario.entity";
-import {Repository} from "typeorm";
+import {Like, Repository} from "typeorm";
 import {UsuarioData} from "./usuario.data";
 
 @Injectable()
@@ -26,5 +26,9 @@ export class UsuarioService {
 
     async listarTodos(): Promise<UsuarioEntity[]> {
         return await this._usuarioRepository.find();
+    }
+
+    async buscarUsuarios(nombreBuscar: string): Promise<UsuarioEntity[]> {
+        return await this._usuarioRepository.find({ nombreUsuario: Like('%' + nombreBuscar + '%') });
     }
 }

@@ -1,5 +1,5 @@
 import {Injectable} from "@nestjs/common";
-import {Repository} from "typeorm";
+import {Like, Repository} from "typeorm";
 import {AutorEntity} from "./autor.entity";
 import {AutorData} from "./autor.data";
 import {InjectRepository} from "@nestjs/typeorm";
@@ -29,6 +29,10 @@ export class AutorService {
 
     async listarTodos(): Promise<AutorEntity[]> {
         return await this._autorRepository.find();
+    }
+
+    async buscarAutores(nombresBuscar: string): Promise<AutorEntity[]> {
+        return await this._autorRepository.find({ nombres: Like('%' + nombresBuscar + '%') });
     }
 
     /*obtenerUno(id) {
