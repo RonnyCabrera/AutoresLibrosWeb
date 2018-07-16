@@ -1,7 +1,6 @@
-import {Body, Controller, Get, HttpStatus, Param, Post, Put, Req, Res} from "@nestjs/common";
-import {AutorService, Autor} from "./autor.service";
-import {AutorPipe} from "../pipes/autor.pipe";
-import {AUTOR_SCHEMA} from "./autor.schema";
+import {Controller, Get, HttpStatus, Post, Req, Res} from "@nestjs/common";
+import {AutorService} from "./autor.service";
+import {AutorEntity} from "./autor.entity";
 
 
 @Controller('Autor')
@@ -11,34 +10,26 @@ export  class AutorController {
 
     }
 
+    @Post()
+    crearAutor() {
+        return this._autorService.crearAutor();
+    }
+
     @Get()
-    listarTodos(@Res () response,
-                @Req () request){
-        var arregloAutores = this._autorService.listarTodos();
-        if(Object.keys(arregloAutores).length === 0){
+    async listarTodos(@Res () response,
+                      @Req () request) {
+        const autores = await this._autorService.listarTodos();
+        if(Object.keys(autores).length === 0){
             return response.send({
                 mensaje:'No existe ningun Autor',
                 estado: HttpStatus.NOT_FOUND,
             });
         } else{
-            return response.status(202).send(arregloAutores);
+            return response.status(202).send(autores);
         }
     }
 
-    @Post()
-    crearAutor(@Body(new AutorPipe(AUTOR_SCHEMA)) bodyParams) {
-            const autorNuevo = new Autor(
-                bodyParams.id,
-                bodyParams.nombres,
-                bodyParams.apellidos,
-                bodyParams.fechaNacimiento,
-                bodyParams.numeroLibros,
-                bodyParams.ecuatoriano,
-            );
-            return this._autorService.crearAutor(autorNuevo);
-    }
-
-    @Get('/:id')
+    /*@Get('/:id')
     obtenerUno(@Res () response,
                     @Req () request,
                     @Param() paramParams){
@@ -55,9 +46,9 @@ export  class AutorController {
                     statusCode: HttpStatus.NOT_FOUND,
                 });
         }
-    }
+    }*/
 
-    @Put('/:id')
+    /*@Put('/:id')
     editarUno(@Res () response,
               @Req () request,
               @Param() paramParams,
@@ -79,6 +70,6 @@ export  class AutorController {
                     statusCode: HttpStatus.NOT_FOUND,
                 });
         }
-    }
+    }*/
 }
 

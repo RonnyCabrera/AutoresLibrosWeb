@@ -8,14 +8,17 @@ import {UsuarioData} from "./usuario.data";
 export class UsuarioService {
     constructor(
         @InjectRepository(UsuarioEntity)
-        private readonly _usuarioRepository: Repository<UsuarioEntity>,
-    ) {}
+        private readonly _usuarioRepository: Repository<UsuarioEntity>,) {
+
+    }
 
     crearUsuario() {
         for(var usuarios in UsuarioData) {
             const usuario = new UsuarioEntity();
             usuario.user = UsuarioData[usuarios].user;
             usuario.password = UsuarioData[usuarios].password;
+            usuario.nombreUsuario = UsuarioData[usuarios].nombreUsuario;
+            usuario.apellidoUsuario = UsuarioData[usuarios].apellidoUsuario;
             this._usuarioRepository.save(usuario);
         }
         return this._usuarioRepository.find();
@@ -24,5 +27,4 @@ export class UsuarioService {
     async listarTodos(): Promise<UsuarioEntity[]> {
         return await this._usuarioRepository.find();
     }
-
 }

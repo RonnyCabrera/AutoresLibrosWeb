@@ -3,14 +3,36 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import {RouterModule} from "@angular/router";
+import {AppRoutes} from "./app.routes";
+import { HomeComponent } from './home/home.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { AutorComponent } from './autor/autor.component';
+import { LibroComponent } from './libro/libro.component';
+import { ModeloLibroComponent } from './modelo-libro/modelo-libro.component';
+import { ModeloAutorComponent } from './modelo-autor/modelo-autor.component';
+import { ModeloUsuarioComponent } from './modelo-usuario/modelo-usuario.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    UsuarioComponent,
+    AutorComponent,
+    LibroComponent,
+    ModeloLibroComponent,
+    ModeloAutorComponent,
+    ModeloUsuarioComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(
+      AppRoutes,
+      {
+        useHash: true
+      }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

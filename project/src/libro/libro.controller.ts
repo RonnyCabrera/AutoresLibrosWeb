@@ -1,7 +1,6 @@
-import {Body, Controller, Get, HttpStatus, Param, Post, Put, Req, Res} from "@nestjs/common";
-import {LibroService, Libro} from "./libro.service";
-import {LibroPipe} from "../pipes/libro.pipe";
-import {LIBRO_SCHEMA} from "./libro.schema";
+import {Controller, Get, HttpStatus, Post, Req, Res} from "@nestjs/common";
+import {LibroService} from "./libro.service";
+import {LibroEntity} from "./libro.entity";
 
 @Controller('Libro')
 export class LibroController {
@@ -10,36 +9,26 @@ export class LibroController {
 
     }
 
+    @Post()
+    crearLibro() {
+        return this._libroService.crearLibro();
+    }
+
     @Get()
-    listarTodos(@Res () response,
-                @Req () request){
-        var arregloLibros = this._libroService.listarTodos();
-        if(Object.keys(arregloLibros).length === 0){
+    async listarTodos(@Res () response,
+                      @Req () request) {
+        const libros = await this._libroService.listarTodos();
+        if(Object.keys(libros).length === 0){
             return response.send({
-                mensaje:'No existe ningun Autor',
+                mensaje:'No existe ningun Libro',
                 estado: HttpStatus.NOT_FOUND,
             });
         } else{
-            return response.status(202).send(arregloLibros);
+            return response.status(202).send(libros);
         }
     }
 
-    @Post()
-    crearLibro(@Body(new LibroPipe(LIBRO_SCHEMA)) bodyParams) {
-        const libroNuevo = new Libro(
-            bodyParams.id,
-            bodyParams.ICBN,
-            bodyParams.nombre,
-            bodyParams.numeroPaginas,
-            bodyParams.edicion,
-            bodyParams.fechaPublicacion,
-            bodyParams.nombreEditorial,
-            bodyParams.autorId
-        );
-        return this._libroService.crearLibro(libroNuevo);
-    }
-
-    @Get('/:id')
+    /*@Get('/:id')
     obtenerUno(@Res () response,
                @Req () request,
                @Param() paramParams){
@@ -56,9 +45,9 @@ export class LibroController {
                     statusCode: HttpStatus.NOT_FOUND,
                 });
         }
-    }
+    }*/
 
-    @Put('/:id')
+    /*@Put('/:id')
     editarUno(@Res () response,
               @Req () request,
               @Param() paramParams,
@@ -83,5 +72,5 @@ export class LibroController {
                     statusCode: HttpStatus.NOT_FOUND,
                 });
         }
-    }
+    }*/
 }

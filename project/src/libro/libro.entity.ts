@@ -29,5 +29,5 @@ export class LibroEntity {
         autor => autor.libros
     )
 
-    autores: AutorEntity;
+    autores: number;
 }

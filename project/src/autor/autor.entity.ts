@@ -27,12 +27,12 @@ export class AutorEntity {
         libro => libro.autores
     )
 
-    libros: [LibroEntity];
+    libros: number;
 
     @ManyToOne(
         type => UsuarioEntity,
         usuario => usuario.autores
     )
 
-    usuarios: UsuarioEntity;
+    usuarios: number;
 }
