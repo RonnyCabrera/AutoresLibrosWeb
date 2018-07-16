@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AutorServicio} from "../servicios/autor.servicio";
 
 @Component({
   selector: 'app-autor',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AutorComponent implements OnInit {
 
-  constructor() { }
+  autores = []
+
+  constructor(private _autorServicio: AutorServicio) { }
 
   ngOnInit() {
+    this._autorServicio.getAutores().subscribe(
+      (result: any[]) => {
+        this.autores = result;
+      }
+    );
   }
-
 }

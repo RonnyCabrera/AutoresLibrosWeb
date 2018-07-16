@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import {RouterModule} from "@angular/router";
@@ -12,6 +11,7 @@ import { LibroComponent } from './libro/libro.component';
 import { ModeloLibroComponent } from './modelo-libro/modelo-libro.component';
 import { ModeloAutorComponent } from './modelo-autor/modelo-autor.component';
 import { ModeloUsuarioComponent } from './modelo-usuario/modelo-usuario.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -27,6 +27,7 @@ import { ModeloUsuarioComponent } from './modelo-usuario/modelo-usuario.componen
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(
       AppRoutes,
       {
