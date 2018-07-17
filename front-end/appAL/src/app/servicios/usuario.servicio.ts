@@ -21,4 +21,9 @@ export class UsuarioServicio {
     let header = UsuarioServicio.getCommonHeaders();
     return this.http.get("http://localhost:3000/Usuario",{headers: header});
   }
+
+  getUsuarioBuscar(nombreBuscar) {
+    let header = UsuarioServicio.getCommonHeaders();
+    return this.http.get(`http://localhost:3000/Usuario/${nombreBuscar}` , {headers: header});
+  }
 }

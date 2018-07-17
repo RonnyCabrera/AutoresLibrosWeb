@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {UsuarioServicio} from "../servicios/usuario.servicio";
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-usuario',
@@ -8,42 +7,13 @@ import {UsuarioServicio} from "../servicios/usuario.servicio";
 })
 export class UsuarioComponent implements OnInit {
 
-  usuarios = [];
-  items = 4;
-  paginas;
-  usuariosMostrar;
-  paginaActual: number = 1;
+  @Input() nombres: string;
+  @Input() apellidos: string;
 
-  constructor(private _usuarioServicio: UsuarioServicio) { }
+  constructor() {
+  }
 
   ngOnInit() {
-    this._usuarioServicio.getUsuarios().subscribe(
-      (result: any[]) => {
-        this.usuarios = result;
-        this.numeroPaginas();
-        this.usuariosVisualizar();
-      }
-    );
-  }
 
-  numeroPaginas() {
-    this.paginas = this.usuarios.length/this.items;
-    if(!Number.isInteger(this.paginas)) {
-      this.paginas = Number.parseInt(this.paginas + 1);
-    }
-  }
-
-  usuariosVisualizar() {
-    this.usuariosMostrar = this.usuarios.slice(this.paginaActual*this.items - this.items, this.paginaActual*this.items);
-  }
-
-  siguiente() {
-    this.paginaActual += 1;
-    this.usuariosVisualizar();
-  }
-
-  anterior() {
-    this.paginaActual -= 1;
-    this.usuariosVisualizar();
   }
 }
