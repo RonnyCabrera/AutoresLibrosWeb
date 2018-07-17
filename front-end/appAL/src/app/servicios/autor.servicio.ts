@@ -21,4 +21,9 @@ export class AutorServicio {
     let header = AutorServicio.getCommonHeaders();
     return this.http.get("http://localhost:3000/Autor",{headers: header});
   }
+
+  getAutorBuscar(nombreBuscar) {
+    let header = AutorServicio.getCommonHeaders();
+    return this.http.get(`http://localhost:3000/Autor/${nombreBuscar}` , {headers: header});
+  }
 }

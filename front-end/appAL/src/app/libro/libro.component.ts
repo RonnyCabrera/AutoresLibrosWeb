@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {LibroServicio} from "../servicios/libro.servicio";
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-libro',
@@ -8,42 +7,17 @@ import {LibroServicio} from "../servicios/libro.servicio";
 })
 export class LibroComponent implements OnInit {
 
-  libros = [];
-  items = 4;
-  paginas;
-  librosMostrar;
-  paginaActual: number = 1;
+  @Input() libroICBN: number;
+  @Input() libroNombre: string;
+  @Input() libroNumeroPaginas: number;
+  @Input() libroEdicion: number;
+  @Input() libroFechaPublicacion: string;
+  @Input() libroNombreEditorial: string;
 
-  constructor(private _libroServicio: LibroServicio) { }
+  constructor() {
+  }
 
   ngOnInit() {
-    this._libroServicio.getLibros().subscribe(
-      (result: any[]) => {
-        this.libros = result;
-        this.numeroPaginas();
-        this.librosVisualizar();
-      }
-    );
-  }
 
-  numeroPaginas() {
-    this.paginas = this.libros.length/this.items;
-    if(!Number.isInteger(this.paginas)) {
-      this.paginas = Number.parseInt(this.paginas + 1);
-    }
-  }
-
-  librosVisualizar() {
-    this.librosMostrar = this.libros.slice(this.paginaActual*this.items - this.items, this.paginaActual*this.items);
-  }
-
-  siguiente() {
-    this.paginaActual += 1;
-    this.librosVisualizar();
-  }
-
-  anterior() {
-    this.paginaActual -= 1;
-    this.librosVisualizar();
   }
 }

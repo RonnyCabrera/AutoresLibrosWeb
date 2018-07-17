@@ -12,44 +12,122 @@ import {LibroServicio} from "../servicios/libro.servicio";
 export class HomeComponent implements OnInit {
 
   nombreBuscar;
-  usuarios = [];
-  items = 4;
-  paginas;
-  usuariosMostrar;
-  paginaActual: number = 1;
 
-  constructor(private _usuarioServicio: UsuarioServicio) { }
+  usuarios = [];
+  itemsUsuarios = 4;
+  paginasUsuarios;
+  usuariosMostrar;
+  paginaActualUsuario: number = 1;
+
+  autores = [];
+  itemsAutores = 2;
+  paginasAutores;
+  autoresMostrar;
+  paginaActualAutor: number = 1;
+
+  libros = [];
+  itemsLibros = 4;
+  paginasLibros;
+  librosMostrar;
+  paginaActualLibro: number = 1;
+
+  constructor(private _usuarioServicio: UsuarioServicio,
+              private _autorServicio: AutorServicio,
+              private _libroServicio: LibroServicio) { }
 
   ngOnInit() {
+    this._usuarioServicio.getUsuarios().subscribe(
+      (result: any[]) => {
+        this.usuarios = result;
+        this.paginasUsuarios = this.numeroPaginas(this.usuarios, this.itemsUsuarios);
+        this.usuariosMostrar = this.datosVisualizar(this.usuarios, this.paginaActualUsuario, this.itemsUsuarios);
+      }
+    )
+
+    this._autorServicio.getAutores().subscribe(
+      (result: any[]) => {
+        this.autores = result;
+        this.paginasAutores = this.numeroPaginas(this.autores, this.itemsAutores);
+        this.autoresMostrar = this.datosVisualizar(this.autores, this.paginaActualAutor, this.itemsAutores);
+      }
+    )
+
+    this._libroServicio.getLibros().subscribe(
+      (result: any[]) => {
+        this.libros = result;
+        this.paginasLibros = this.numeroPaginas(this.libros, this.itemsLibros);
+        this.librosMostrar = this.datosVisualizar(this.libros, this.paginaActualLibro, this.itemsLibros);
+      }
+    )
+  }
+
+  buscar() {
     this._usuarioServicio.getUsuarioBuscar(this.nombreBuscar).subscribe(
       (result: any[]) => {
         this.usuarios = result;
-        console.log(this.nombreBuscar);
-        console.log(this.usuarios);
-        this.numeroPaginas();
-        this.usuariosVisualizar();
+        this.paginasUsuarios = this.numeroPaginas(this.usuarios, this.itemsUsuarios);
+        this.usuariosMostrar = this.datosVisualizar(this.usuarios, this.paginaActualUsuario, this.itemsUsuarios);
+      }
+    );
+
+    this._autorServicio.getAutorBuscar(this.nombreBuscar).subscribe(
+      (result: any[]) => {
+        this.autores = result;
+        this.paginasAutores = this.numeroPaginas(this.autores, this.itemsAutores);
+        this.autoresMostrar = this.datosVisualizar(this.autores, this.paginaActualAutor, this.itemsAutores);
+      }
+    );
+
+    this._libroServicio.getLibroBuscar(this.nombreBuscar).subscribe(
+      (result: any[]) => {
+        this.libros = result;
+        this.paginasLibros = this.numeroPaginas(this.libros, this.itemsLibros);
+        this.librosMostrar = this.datosVisualizar(this.libros, this.paginaActualLibro, this.itemsLibros);
       }
     );
   }
 
-  numeroPaginas() {
-    this.paginas = this.usuarios.length/this.items;
-    if(!Number.isInteger(this.paginas)) {
-      this.paginas = Number.parseInt(this.paginas + 1);
+  numeroPaginas(lista: any[], items): number {
+    let paginas = lista.length/items;
+    if(!Number.isInteger(paginas)) {
+      paginas = paginas + 1;
+      paginas = Number.parseInt(paginas.toString());
     }
+    return paginas;
   }
 
-  usuariosVisualizar() {
-    this.usuariosMostrar = this.usuarios.slice(this.paginaActual*this.items - this.items, this.paginaActual*this.items);
+  datosVisualizar(lista: any[], paginaActual, items): any [] {
+    let usuariosMostrar = lista.slice(paginaActual*items - items, paginaActual*items);
+    return usuariosMostrar;
   }
 
-  siguiente() {
-    this.paginaActual += 1;
-    this.usuariosVisualizar();
+  siguienteUsuario() {
+    this.paginaActualUsuario += 1;
+    this.usuariosMostrar = this.datosVisualizar(this.usuarios, this.paginaActualUsuario, this.itemsUsuarios)
   }
 
-  anterior() {
-    this.paginaActual -= 1;
-    this.usuariosVisualizar();
+  anteriorUsuario() {
+    this.paginaActualUsuario -= 1;
+    this.usuariosMostrar = this.datosVisualizar(this.usuarios, this.paginaActualUsuario, this.itemsUsuarios)
+  }
+
+  siguienteAutor() {
+    this.paginaActualAutor += 1;
+    this.autoresMostrar = this.datosVisualizar(this.autores, this.paginaActualAutor, this.itemsAutores)
+  }
+
+  anteriorAutor() {
+    this.paginaActualAutor -= 1;
+    this.autoresMostrar = this.datosVisualizar(this.autores, this.paginaActualAutor, this.itemsAutores)
+  }
+
+  siguienteLibro() {
+    this.paginaActualLibro += 1;
+    this.librosMostrar = this.datosVisualizar(this.libros, this.paginaActualLibro, this.itemsLibros)
+  }
+
+  anteriorLibro() {
+    this.paginaActualLibro -= 1;
+    this.librosMostrar = this.datosVisualizar(this.libros, this.paginaActualLibro, this.itemsLibros)
   }
 }

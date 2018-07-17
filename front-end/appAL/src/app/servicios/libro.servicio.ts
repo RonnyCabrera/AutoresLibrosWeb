@@ -21,4 +21,9 @@ export class LibroServicio {
     let header = LibroServicio.getCommonHeaders();
     return this.http.get("http://localhost:3000/Libro",{headers: header});
   }
+
+  getLibroBuscar(nombreBuscar) {
+    let header = LibroServicio.getCommonHeaders();
+    return this.http.get(`http://localhost:3000/Libro/${nombreBuscar}` , {headers: header});
+  }
 }

@@ -11,16 +11,17 @@
   <div class="col-sm-10">
     <form class="form-inline">
       <input class="form-control" type="search" placeholder="Buscar Usuario o Autor o Libro" aria-label="Search" [(ngModel)]="nombreBuscar" name="Search">
-      <button class="btn btn-outline-success" type="submit" (click)="ngOnInit()">Buscar</button>
+      <button class="btn btn-outline-success" type="submit" (click)="buscar()">Buscar</button>
     </form>
   </div>
   <div class="col-sm-1">
 
   </div>
 </div>
-<br>
-<div class="row">
 
+<br>
+
+<div class="row">
   <div class="col-sm-1">
 
   </div>
@@ -28,20 +29,20 @@
     <h3>Usuarios</h3>
     <div class="row">
       <div *ngFor="let usuario of usuariosMostrar" class="col-sm-3">
-        <div class="card" style="width: 10rem;">
-          <app-usuario [nombres]="usuario.nombreUsuario" [apellidos]="usuario.apellidoUsuario" ></app-usuario>
-        </div>
+
+          <app-usuario [usuarioNombres]="usuario.nombreUsuario" [usuarioApellidos]="usuario.apellidoUsuario" ></app-usuario>
+
       </div>
     </div>
     <br>
     <div class="row">
       <div class="col-sm-2">
-        <button (click)="anterior()" [disabled]="paginaActual === 1">Anterior</button>
+        <button (click)="anteriorUsuario()" [disabled]="paginaActualUsuario === 1">Anterior</button>
       </div>
       <div class="col-sm-6">
       </div>
       <div class="col-sm-2 ml-auto">
-        <button (click)="siguiente()" [disabled]="paginaActual === paginas">Siguiente</button>
+        <button (click)="siguienteUsuario()" [disabled]="paginaActualUsuario === paginasUsuarios">Siguiente</button>
       </div>
     </div>
   </div>
@@ -49,10 +50,69 @@
 
   </div>
 </div>
-<!--
+
 <br>
-<app-autor></app-autor>
+
+<div class="row">
+  <div class="col-sm-1">
+
+  </div>
+  <div class="col-sm-10 center-block">
+    <h3>Autores</h3>
+    <div class="row">
+      <div *ngFor="let autor of autoresMostrar" class="col-sm-5">
+
+        <app-autor [autorNombres]="autor.nombres" [autorApellidos]="autor.apellidos" [autorFechaNacimiento]="autor.fechaNacimiento" [autorNumeroLibros]="autor.numeroLibros" [autorEcuatoriano]="autor.ecuatoriano"></app-autor>
+
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-2">
+        <button (click)="anteriorAutor()" [disabled]="paginaActualAutor === 1">Anterior</button>
+      </div>
+      <div class="col-sm-6">
+      </div>
+      <div class="col-sm-2 ml-auto">
+        <button (click)="siguienteAutor()" [disabled]="paginaActualAutor === paginasAutores">Siguiente</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-1">
+
+  </div>
+</div>
+
 <br>
-<app-libro></app-libro>
--->
+
+<div class="row">
+  <div class="col-sm-1">
+
+  </div>
+  <div class="col-sm-10">
+    <h3>Libros</h3>
+    <div class="row">
+      <div *ngFor="let libro of librosMostrar" class="col-sm-3">
+
+        <app-libro [libroICBN]="libro.ICBN" [libroNombre]="libro.nombre" [libroNumeroPaginas]="libro.numeroPaginas" [libroEdicion]="libro.edicion" [libroFechaPublicacion]="libro.fechaPublicacion" [libroNombreEditorial]="libro.nombreEditorial"></app-libro>
+
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-2">
+        <button (click)="anteriorLibro()" [disabled]="paginaActualLibro === 1">Anterior</button>
+      </div>
+      <div class="col-sm-6">
+      </div>
+      <div class="col-sm-2 ml-auto">
+        <button (click)="siguienteLibro()" [disabled]="paginaActualLibro === paginasLibros">Siguiente</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-1">
+
+  </div>
+</div>
+
 <br>

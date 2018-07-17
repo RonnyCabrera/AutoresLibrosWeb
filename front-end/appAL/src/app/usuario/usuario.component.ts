@@ -7,8 +7,8 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class UsuarioComponent implements OnInit {
 
-  @Input() nombres: string;
-  @Input() apellidos: string;
+  @Input() usuarioNombres: string;
+  @Input() usuarioApellidos: string;
 
   constructor() {
   }

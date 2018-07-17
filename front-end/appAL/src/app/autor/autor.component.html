@@ -1,41 +1,15 @@
-<div class="row">
-  <div class="col-sm-1">
-
-  </div>
-  <div class="col-sm-10 center-block">
-    <h3>Autores</h3>
-    <div class="row">
-      <div *ngFor="let autor of autoresMostrar" class="col-sm-5">
-        <div class="card">
-          <div class="row">
-            <div class="col-sm-4">
-              <img class="card-img align-self-center" src="http://aticodeloslibros.com/img/cms/pauljohnson.jpg" alt="Autor" style="width: 125px">
-            </div>
-            <div class="col-sm-8">
-              <div class="card-body">
-                <p class="card-text">Autor: {{autor.nombres}} {{autor.apellidos}}</p>
-                <p class="card-text">Fecha de Nacimiento: {{autor.fechaNacimiento}}</p>
-                <p class="card-text">Numero Libros: {{autor.numeroLibros}}</p>
-                <p class="card-text">Ecuatoriano: {{autor.ecuatoriano}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+<div class="card">
+  <div class="row">
+    <div class="col-sm-4">
+      <img class="card-img align-self-center" src="http://aticodeloslibros.com/img/cms/pauljohnson.jpg" alt="Autor" style="width: 125px">
+    </div>
+    <div class="col-sm-8">
+      <div class="card-body">
+        <p class="card-text">Autor: {{autorNombres}} {{autorApellidos}}</p>
+        <p class="card-text">Fecha de Nacimiento: {{autorFechaNacimiento}}</p>
+        <p class="card-text">Numero Libros: {{autorNumeroLibros}}</p>
+        <p class="card-text">Ecuatoriano: {{autorEcuatoriano}}</p>
       </div>
     </div>
-    <br>
-    <div class="row">
-      <div class="col-sm-2">
-        <button (click)="anterior()" [disabled]="paginaActual === 1">Anterior</button>
-      </div>
-      <div class="col-sm-6">
-      </div>
-      <div class="col-sm-2 ml-auto">
-        <button (click)="siguiente()" [disabled]="paginaActual === paginas">Siguiente</button>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-1">
-
   </div>
 </div>

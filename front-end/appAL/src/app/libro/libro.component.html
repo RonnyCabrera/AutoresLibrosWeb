@@ -1,45 +1,19 @@
-<div class="row">
-  <div class="col-sm-1">
-
-  </div>
-  <div class="col-sm-10">
-    <h3>Libros</h3>
-    <div class="row">
-      <div *ngFor="let libro of librosMostrar" class="col-sm-3">
-        <div class="card">
-          <div class="row">
-            <div class="col-sm-8">
-              <div class="card-body">
-                <p class="card-text">IBCN: {{libro.ICBN}}</p>
-                <p class="card-text">Nombre: {{libro.nombre}}</p>
-                <p class="card-text">Numero Páginas: {{libro.numeroPaginas}}</p>
-                <p class="card-text">Edición: {{libro.edicion}}</p>
-                <p class="card-text">Fecha Publicación: {{libro.fechaPublicacion}}</p>
-                <p class="card-text">Nombre Editorial: {{libro.nombreEditorial}}</p>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <img class="card-img" src="https://static.hsfiles.com/es/wp-content/gallery/libro-recetas-familia/libro-recetas-01.jpg" alt="Libro" style="width: 100px">
-            </div>
-          </div>
-          <a href="#" class="btn btn-primary align-self-center" style="width: 200px">Pedir Transferencia</a>
-        </div>
-
+<div class="card">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card-body">
+        <p class="card-text">IBCN: {{libroICBN}}</p>
+        <p class="card-text">Nombre: {{libroNombre}}</p>
+        <p class="card-text">Numero Páginas: {{libroNumeroPaginas}}</p>
+        <p class="card-text">Edición: {{libroEdicion}}</p>
+        <p class="card-text">Fecha Publicación: {{libroFechaPublicacion}}</p>
+        <p class="card-text">Nombre Editorial: {{libroNombreEditorial}}</p>
       </div>
     </div>
-    <br>
-    <div class="row">
-      <div class="col-sm-2">
-        <button (click)="anterior()" [disabled]="paginaActual === 1">Anterior</button>
-      </div>
-      <div class="col-sm-6">
-      </div>
-      <div class="col-sm-2 ml-auto">
-        <button (click)="siguiente()" [disabled]="paginaActual === paginas">Siguiente</button>
-      </div>
+    <div class="col-sm-4">
+      <img class="card-img" src="https://static.hsfiles.com/es/wp-content/gallery/libro-recetas-familia/libro-recetas-01.jpg" alt="Libro" style="width: 100px">
     </div>
   </div>
-  <div class="col-sm-1">
-
-  </div>
+  <a href="#" class="btn btn-primary align-self-center" style="width: 200px">Pedir Transferencia</a>
 </div>
+
