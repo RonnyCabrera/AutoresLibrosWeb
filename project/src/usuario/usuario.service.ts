@@ -1,7 +1,7 @@
 import {HttpStatus, Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
 import {UsuarioEntity} from "./usuario.entity";
-import {Like, Repository} from "typeorm";
+import {Equal, Like, Repository} from "typeorm";
 import {UsuarioData} from "./usuario.data";
 
 @Injectable()
@@ -30,5 +30,9 @@ export class UsuarioService {
 
     async buscarUsuarios(nombreBuscar: string): Promise<UsuarioEntity[]> {
         return await this._usuarioRepository.find({ nombreUsuario: Like('%' + nombreBuscar + '%') });
+    }
+
+    async buscarUsuarioLogin(usuario: string, contrasenia: string): Promise<UsuarioEntity> {
+        return await this._usuarioRepository.findOne({user: Equal(usuario), password: Equal(contrasenia)});
     }
 }

@@ -36,4 +36,13 @@ export class UsuarioController {
         const usuarios = await this._usuarioService.buscarUsuarios(paramParams.nombreBuscar);
         return response.status(202).send(usuarios);
     }
+
+    @Get('/:usuario&contrasenia')
+    async buscarUsuarioLogin(
+        @Param() paramParams,
+        @Res() response
+    ) {
+        const usuario = await this._usuarioService.buscarUsuarioLogin(paramParams.usuario, paramParams.contrasenia);
+        return response.status(202).send(usuario);
+    }
 }
